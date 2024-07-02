@@ -48,6 +48,9 @@ curl = ["dep:curl", "httpdate"]
 surf-h1 = ["surf/h1-client", "httpdate"]
 surf = ["surf/curl-client", "http-client", "httpdate", "isahc", "tokio"]
 ureq = ["dep:ureq", "httpdate"]
+hyper = ["dep:hyper", "dep:hyper-util", "dep:http-body-util", "httpdate", "tokio"]
+hyper-native-tls = ["hyper", "dep:hyper-tls", "dep:native-tls", "dep:tokio-native-tls"]
+hyper-rustls = ["hyper", "dep:hyper-rustls"]
 # transport settings
 native-tls = ["dep:native-tls", "reqwest?/default-tls", "ureq?/native-tls"]
 rustls = ["dep:rustls", "reqwest?/rustls-tls", "ureq?/tls", "webpki-roots"]
@@ -80,9 +83,15 @@ serde_json = { version = "1.0.48", optional = true }
 tokio = { version = "1.0", features = ["rt"], optional = true }
 ureq = { version = "2.7.0", optional = true, default-features = false }
 native-tls = { version = "0.2.8", optional = true }
-rustls = { version = "0.22.4", optional = true }
+rustls = { version = "0.23.10", optional = true }
 webpki-roots = { version = "0.26.1", optional = true }
 embedded-svc = { version = "0.27.1", optional = true }
+hyper = { version = "1.0", optional = true }
+hyper-util = { version = "0.1", features = ["client", "client-legacy", "http1", "http2"], optional = true }
+hyper-tls = { version = "0.6", optional = true }
+hyper-rustls = { version = "0.27", features = ["http1", "http2", "ring", "webpki-tokio"], default-features = false, optional = true }
+http-body-util = { version = "0.1", optional = true }
+tokio-native-tls = { version = "0.3", optional = true }
 [target.'cfg(target_os = "espidf")'.dependencies]
 esp-idf-svc = { version = "0.48.1", optional = true }
 

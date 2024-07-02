@@ -10,7 +10,7 @@ use std::sync::Arc;
 mod ratelimit;
 #[cfg(any(feature = "curl", feature = "ureq"))]
 mod thread;
-#[cfg(any(feature = "reqwest", feature = "surf",))]
+#[cfg(any(feature = "reqwest", feature = "surf", feature = "hyper"))]
 mod tokio_thread;
 
 #[cfg(feature = "reqwest")]
@@ -37,6 +37,11 @@ pub use self::surf::SurfHttpTransport;
 mod ureq;
 #[cfg(feature = "ureq")]
 pub use self::ureq::UreqHttpTransport;
+
+#[cfg(feature = "hyper")]
+mod hyper;
+#[cfg(feature = "hyper")]
+pub use self::hyper::HyperHttpTransport;
 
 #[cfg(feature = "reqwest")]
 type DefaultTransport = ReqwestHttpTransport;
